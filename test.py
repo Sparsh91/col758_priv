@@ -3,17 +3,15 @@ from random_solver import RandomSolver
 from deterministic_solver import DetermininsticSolver
 import sys
 
-def compute_accurace(a,b):
+def compute_accurace(a,b,eps):
 	# print(a)
 	# print(b)
 	v = 0
 	s = 0
 	for i in range(0,len(a)):
-		if(a[i] > 0):
-			v = v + 1
-			s = s + abs(b[i]-a[i])/a[i]
-			#print(i,a[i],b[i],s,v)
-	return (1-s/v)*100
+		if(b[i] <= (1+eps)*a[i] and  b[i] >= (1-eps)*a[i]):
+			s = s + 1
+	return (s/len(a))*100
 
 
 g = Graph()
@@ -32,7 +30,7 @@ rs = RandomSolver(g,0.1)
 for eps in [0.1,0.05,0.001]:
 	rs.change_eps(eps)
 	rs.solve()
-	a = compute_accurace(ds.solution, rs.solution)
+	a = compute_accurace(ds.solution, rs.solution, rs.eps)
 	print("for eps = "+ str(eps))
 	print("time = "+str(rs.time))
 	print("accuracy = "+ str(a))
