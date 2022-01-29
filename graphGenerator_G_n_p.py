@@ -12,6 +12,7 @@ def G(n,p):
             has_an_edge = np.random.binomial(1,p)
             if(has_an_edge):
                 edges.append((i,j))
+    print(n)
     print(len(edges))
     for i in edges:
         print(i[0],i[1])
