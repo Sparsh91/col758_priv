@@ -6,7 +6,7 @@ class DetermininsticSolver:
 
 	def __init__(self,g):
 		self.graph = g
-		self.solution = [-1 for i in range(0,self.graph.vertices)]
+		self.solution = [0 for i in range(0,self.graph.vertices)]
 		self.time = 0.0
 
 	def solve(self):
@@ -16,7 +16,7 @@ class DetermininsticSolver:
 			visited = [0 for j in range(0,self.graph.vertices)]
 			stk = [v]
 			visited[v] = 1
-			vscore = -1
+			vscore = 0
 			while(len(stk) != 0):
 				vp = stk.pop()		
 				vscore = vscore + 1
